@@ -80,8 +80,6 @@ namespace Fiver.Api.Crud.Controllers
 
         private MovieOutputModel ToOutputModel(Movie model)
         {
-            if (model == null) return null;
-
             return new MovieOutputModel
             {
                 Id = model.Id,
@@ -100,8 +98,6 @@ namespace Fiver.Api.Crud.Controllers
 
         private Movie ToDomainModel(MovieInputModel inputModel)
         {
-            if (inputModel == null) return null;
-
             return new Movie
             {
                 Id = inputModel.Id,

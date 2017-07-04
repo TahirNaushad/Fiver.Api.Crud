@@ -34,7 +34,7 @@ namespace Fiver.Api.Crud.OtherLayers
 
         public void UpdateMovie(Movie item)
         {
-            var model = GetMovie(item.Id);
+            var model = this.movies.Where(m => m.Id == item.Id).FirstOrDefault();
 
             model.Title = item.Title;
             model.ReleaseYear = item.ReleaseYear;
@@ -43,7 +43,7 @@ namespace Fiver.Api.Crud.OtherLayers
 
         public void DeleteMovie(int id)
         {
-            var model = GetMovie(id);
+            var model = this.movies.Where(m => m.Id == id).FirstOrDefault();
 
             this.movies.Remove(model);
         }

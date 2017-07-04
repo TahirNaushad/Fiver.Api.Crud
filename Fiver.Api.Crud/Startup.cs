@@ -20,6 +20,7 @@ namespace Fiver.Api.Crud
             IServiceCollection services)
         {
             services.AddSingleton<IMovieService, MovieService>();
+            services.AddSingleton<IReviewService, ReviewService>();
 
             services.AddMvc();
         }

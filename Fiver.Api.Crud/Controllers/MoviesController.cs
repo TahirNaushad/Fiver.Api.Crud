@@ -1,4 +1,5 @@
-﻿using Fiver.Api.Crud.Models.Movies;
+﻿using Fiver.Api.Crud.Lib;
+using Fiver.Api.Crud.Models.Movies;
 using Fiver.Api.Crud.OtherLayers;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -8,7 +9,7 @@ using System.Linq;
 namespace Fiver.Api.Crud.Controllers
 {
     [Route("movies")]
-    public class MoviesController : Controller
+    public class MoviesController : BaseController
     {
         private readonly IMovieService service;
 
@@ -43,6 +44,9 @@ namespace Fiver.Api.Crud.Controllers
             if (inputModel == null)
                 return BadRequest();
 
+            if (!ModelState.IsValid)
+                return Unprocessable(ModelState);
+
             var model = ToDomainModel(inputModel);
             service.AddMovie(model);
 
@@ -58,6 +62,9 @@ namespace Fiver.Api.Crud.Controllers
 
             if (!service.MovieExists(id))
                 return NotFound();
+
+            if (!ModelState.IsValid)
+                return new UnprocessableObjectResult(ModelState);
 
             var model = ToDomainModel(inputModel);
             service.UpdateMovie(model);

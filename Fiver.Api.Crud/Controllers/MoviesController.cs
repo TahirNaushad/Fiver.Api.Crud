@@ -1,6 +1,7 @@
 ﻿using Fiver.Api.Crud.Lib;
 using Fiver.Api.Crud.Models.Movies;
 using Fiver.Api.Crud.OtherLayers;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -72,6 +73,30 @@ namespace Fiver.Api.Crud.Controllers
             return NoContent();
         }
 
+        [HttpPatch("{id}")]
+        public IActionResult UpdatePatch(
+            int id, [FromBody]JsonPatchDocument<MovieInputModel> patch)
+        {
+            if (patch == null)
+                return BadRequest();
+
+            var model = service.GetMovie(id);
+            if (model == null)
+                return NotFound();
+
+            var inputModel = ToInputModel(model);
+            patch.ApplyTo(inputModel);
+
+            TryValidateModel(inputModel);
+            if (!ModelState.IsValid)
+                return new UnprocessableObjectResult(ModelState);
+
+            model = ToDomainModel(inputModel);
+            service.UpdateMovie(model);
+
+            return NoContent();
+        }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -82,7 +107,7 @@ namespace Fiver.Api.Crud.Controllers
 
             return NoContent();
         }
-        
+
         #region " Mappings "
 
         private MovieOutputModel ToOutputModel(Movie model)
@@ -111,6 +136,17 @@ namespace Fiver.Api.Crud.Controllers
                 Title = inputModel.Title,
                 ReleaseYear = inputModel.ReleaseYear,
                 Summary = inputModel.Summary
+            };
+        }
+
+        private MovieInputModel ToInputModel(Movie model)
+        {
+            return new MovieInputModel
+            {
+                Id = model.Id,
+                Title = model.Title,
+                ReleaseYear = model.ReleaseYear,
+                Summary = model.Summary
             };
         }
         

@@ -21,8 +21,8 @@ namespace Fiver.Api.Crud.Controllers
         public IActionResult Get()
         {
             var model = service.GetMovies();
-            var outputModel = ToOutputModel(model);
 
+            var outputModel = ToOutputModel(model);
             return Ok(outputModel);
         }
 
@@ -30,11 +30,10 @@ namespace Fiver.Api.Crud.Controllers
         public IActionResult Get(int id)
         {
             var model = service.GetMovie(id);
-            var outputModel = ToOutputModel(model);
-
-            if (outputModel == null)
+            if (model == null)
                 return NotFound();
 
+            var outputModel = ToOutputModel(model);
             return Ok(outputModel);
         }
 
@@ -44,11 +43,10 @@ namespace Fiver.Api.Crud.Controllers
             if (inputModel == null)
                 return BadRequest();
 
-            var model = FromInputModel(inputModel);
+            var model = ToDomainModel(inputModel);
             service.AddMovie(model);
 
             var outputModel = ToOutputModel(model);
-
             return CreatedAtRoute("GetMovie", new { id = outputModel.Id }, outputModel);
         }
 
@@ -59,9 +57,9 @@ namespace Fiver.Api.Crud.Controllers
                 return BadRequest();
 
             if (!service.MovieExists(id))
-                return BadRequest();
+                return NotFound();
 
-            var model = FromInputModel(inputModel);
+            var model = ToDomainModel(inputModel);
             service.UpdateMovie(model);
 
             return NoContent();
@@ -71,13 +69,13 @@ namespace Fiver.Api.Crud.Controllers
         public IActionResult Delete(int id)
         {
             if (!service.MovieExists(id))
-                return BadRequest();
+                return NotFound();
 
             service.DeleteMovie(id);
 
             return NoContent();
         }
-
+        
         #region " Mappings "
 
         private MovieOutputModel ToOutputModel(Movie model)
@@ -100,7 +98,7 @@ namespace Fiver.Api.Crud.Controllers
                         .ToList();
         }
 
-        private Movie FromInputModel(MovieInputModel inputModel)
+        private Movie ToDomainModel(MovieInputModel inputModel)
         {
             if (inputModel == null) return null;
 
@@ -112,7 +110,7 @@ namespace Fiver.Api.Crud.Controllers
                 Summary = inputModel.Summary
             };
         }
-
+        
         #endregion
     }
 }

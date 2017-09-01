@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiver.Api.Crud", "Fiver.Api.Crud\Fiver.Api.Crud.csproj", "{2043DB02-96E7-4B4D-B6B8-B156161FFA99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiver.Api.Crud", "Fiver.Api.Crud\Fiver.Api.Crud.csproj", "{2043DB02-96E7-4B4D-B6B8-B156161FFA99}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "postman", "postman", "{2ABCA2A2-6A05-4BF7-BE2F-57DF54789E96}"
+	ProjectSection(SolutionItems) = preProject
+		postman\API - CRUD.postman_collection.json = postman\API - CRUD.postman_collection.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +23,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4652D755-573A-4B80-A3CE-AAD922A4124E}
 	EndGlobalSection
 EndGlobal

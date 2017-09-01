@@ -1,0 +1,155 @@
+{
+	"variables": [],
+	"info": {
+		"name": "API - CRUD",
+		"_postman_id": "eea05010-a277-5bb4-881b-c7e19734e22a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:56942/movies",
+			"request": {
+				"url": "http://localhost:56942/movies",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:56942/movies",
+			"request": {
+				"url": "http://localhost:56942/movies",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 4,\n    \"title\": \"Thunderball\",\n    \"releaseYear\": 1965,\n    \"summary\": \"James Bond heads to The Bahamas to recover two nuclear warheads stolen by SPECTRE agent Emilio Largo in an international extortion scheme.\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:56942/movies/4",
+			"request": {
+				"url": "http://localhost:56942/movies/4",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 4,\n    \"title\": \"\",\n    \"releaseYear\": 1965,\n    \"summary\": \"James Bond heads to The Bahamas to recover two nuclear warheads stolen by SPECTRE agent Emilio Largo in an international extortion scheme.\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:56942/movies/4",
+			"request": {
+				"url": "http://localhost:56942/movies/4",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:56942/movies/1/reviews",
+			"request": {
+				"url": "http://localhost:56942/movies/1/reviews",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:56942/movies/1/reviews",
+			"request": {
+				"url": "http://localhost:56942/movies/1/reviews",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 6,\n    \"reviewer\": \"Seifu\",\n    \"comments\": \"Worth Watching\",\n    \"movieId\": 1\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:56942/movies/1/reviews/6",
+			"request": {
+				"url": "http://localhost:56942/movies/1/reviews/6",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 6,\n    \"reviewer\": \"Seifu\",\n    \"comments\": \"Worth Watching 10 times\",\n    \"movieId\": 1\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:56942/movies/1/reviews/6",
+			"request": {
+				"url": "http://localhost:56942/movies/1/reviews/6",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:56942/movies/4",
+			"request": {
+				"url": "http://localhost:56942/movies/4",
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json-patch+json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\n\t\"op\": \"add\",\n\t\"path\": \"/title\",\n\t\"value\": \"Thunderball-Patched\"\n}]"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

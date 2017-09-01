@@ -37,6 +37,9 @@ namespace Fiver.Api.Crud.Controllers
 
             var outputModel = ToOutputModel(model);
             return Ok(outputModel);
+
+            //var model = service.GetMovie(id);
+            //return OkOrNotFound(model);
         }
 
         [HttpPost]

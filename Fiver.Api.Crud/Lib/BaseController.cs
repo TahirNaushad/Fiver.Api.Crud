@@ -16,5 +16,11 @@ namespace Fiver.Api.Crud.Lib
         {
             return new UnprocessableObjectResult(value);
         }
+
+        [NonAction]
+        public IActionResult OkOrNotFound(object model)
+        {
+            return (model == null) ? NotFound() : (IActionResult)Ok(model);
+        }
     }
 }
